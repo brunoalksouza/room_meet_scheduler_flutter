@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/pages/scheduler.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,15 +10,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          
-        ),
-      ),
-    );
+    return const Scheduler();
   }
 }
