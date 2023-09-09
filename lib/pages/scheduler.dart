@@ -34,7 +34,7 @@ class Scheduler extends StatelessWidget {
                 onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color.fromARGB(64, 231, 231, 231), // Background color
+                    Color.fromARGB(64, 231, 231, 231), // Background color
                   ),
                   side: MaterialStateProperty.all<BorderSide>(
                     const BorderSide(

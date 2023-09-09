@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_calendar: ^22.2.12
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:

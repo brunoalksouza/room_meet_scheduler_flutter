@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class DrawerSide extends StatelessWidget {
   const DrawerSide({
@@ -8,7 +10,6 @@ class DrawerSide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      shadowColor: Colors.transparent,
       child: Theme(
         data: ThemeData(
           iconTheme: const IconThemeData(
@@ -17,9 +18,12 @@ class DrawerSide extends StatelessWidget {
         ),
         child: ListView(
           padding: EdgeInsets.zero,
-          children: [],
+          children: <Widget>[
+            CalendarDrawer()
+          ],
         ),
       ),
     );
   }
 }
+
