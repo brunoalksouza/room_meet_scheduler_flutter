@@ -12,6 +12,8 @@ class Scheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime selectedDay = DateTime.now();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -30,29 +32,34 @@ class Scheduler extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-              TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(64, 231, 231, 231), // Background color
-                  ),
-                  side: MaterialStateProperty.all<BorderSide>(
-                    const BorderSide(
-                      color: Colors.black, // Border color
-                      width: 1.0, // Border width
+              Tooltip(
+                message: selectedDay.toString(),
+                child: TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(
+                          64, 231, 231, 231), // Background color
                     ),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      const BorderSide(
+                        color: Colors.black, // Border color
+                        width: 1.0, // Border width
+                      ),
+                    ),
+                    overlayColor: MaterialStateProperty.all<Color?>(
+                      const Color.fromARGB(
+                          87, 222, 222, 222), // Overlay color when pressed
+                    ),
+                    splashFactory:
+                        NoSplash.splashFactory, // Remove splash effect
                   ),
-                  overlayColor: MaterialStateProperty.all<Color?>(
-                    const Color.fromARGB(
-                        87, 222, 222, 222), // Overlay color when pressed
-                  ),
-                  splashFactory: NoSplash.splashFactory, // Remove splash effect
-                ),
-                child: const Text(
-                  'Hoje',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
+                  child: const Text(
+                    'Hoje',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
