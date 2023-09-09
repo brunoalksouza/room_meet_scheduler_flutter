@@ -43,12 +43,16 @@ class _CalendarDrawerState extends State<CalendarDrawer> {
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: TableCalendar(
-          headerStyle: const HeaderStyle(),
           firstDay: DateTime.utc(2010, 10, 16),
           lastDay: DateTime.utc(2030, 3, 14),
           focusedDay: DateTime.now(),
           locale: 'pt_BR',
+          availableGestures: AvailableGestures.none,
           calendarFormat: _calendarFormat,
+          headerStyle: const HeaderStyle(
+            titleCentered: true,
+            formatButtonVisible: false,
+          ),
           selectedDayPredicate: (day) {
             return isSameDay(_selectedDay, day);
           },
