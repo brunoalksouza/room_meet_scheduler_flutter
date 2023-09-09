@@ -9,11 +9,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Calendar Drawer'),
-        ),
         body: CalendarDrawer(),
       ),
     );
@@ -26,6 +23,7 @@ class CalendarDrawer extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _CalendarDrawerState createState() => _CalendarDrawerState();
 }
 

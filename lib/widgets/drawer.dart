@@ -9,15 +9,18 @@ class DrawerSide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Theme(
-        data: ThemeData(
-          iconTheme: const IconThemeData(
-            color: Colors.black,
+      elevation: 0,
+      child: Material(
+        child: Theme(
+          data: ThemeData(
+            iconTheme: const IconThemeData(
+              color: Colors.black,
+            ),
           ),
-        ),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[CalendarDrawer()],
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: const <Widget>[CalendarDrawer()],
+          ),
         ),
       ),
     );
