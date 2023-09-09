@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class DrawerSide extends StatelessWidget {
   const DrawerSide({
@@ -18,12 +17,9 @@ class DrawerSide extends StatelessWidget {
         ),
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
-            CalendarDrawer()
-          ],
+          children: const <Widget>[CalendarDrawer()],
         ),
       ),
     );
   }
 }
-
