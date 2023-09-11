@@ -1,4 +1,6 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
 import 'package:room_meet_scheduler_flutter/widgets/drawer.dart';
 
 void main() {
@@ -12,7 +14,8 @@ class Scheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime selectedDay = DateTime.now();
+    String selectedDay =
+        DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(DateTime.now());
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -33,7 +36,7 @@ class Scheduler extends StatelessWidget {
                 ),
               ),
               Tooltip(
-                message: selectedDay.toString(),
+                message: selectedDay,
                 child: TextButton(
                   onPressed: () {},
                   style: ButtonStyle(
@@ -77,6 +80,7 @@ class Scheduler extends StatelessWidget {
             ),
           ),
         ),
+        body: const CalendarDrawer(),
         drawer: const DrawerSide(),
       ),
     );
