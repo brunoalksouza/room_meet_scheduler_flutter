@@ -1,4 +1,6 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
 import 'package:room_meet_scheduler_flutter/widgets/drawer.dart';
 
 void main() {
@@ -12,6 +14,9 @@ class Scheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String selectedDay =
+        DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(DateTime.now());
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -30,29 +35,34 @@ class Scheduler extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-              TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color.fromARGB(64, 231, 231, 231), // Background color
-                  ),
-                  side: MaterialStateProperty.all<BorderSide>(
-                    const BorderSide(
-                      color: Colors.black, // Border color
-                      width: 1.0, // Border width
+              Tooltip(
+                message: selectedDay,
+                child: TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(
+                          64, 231, 231, 231), // Background color
                     ),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      const BorderSide(
+                        color: Colors.black, // Border color
+                        width: 1.0, // Border width
+                      ),
+                    ),
+                    overlayColor: MaterialStateProperty.all<Color?>(
+                      const Color.fromARGB(
+                          87, 222, 222, 222), // Overlay color when pressed
+                    ),
+                    splashFactory:
+                        NoSplash.splashFactory, // Remove splash effect
                   ),
-                  overlayColor: MaterialStateProperty.all<Color?>(
-                    const Color.fromARGB(
-                        87, 222, 222, 222), // Overlay color when pressed
-                  ),
-                  splashFactory: NoSplash.splashFactory, // Remove splash effect
-                ),
-                child: const Text(
-                  'Hoje',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
+                  child: const Text(
+                    'Hoje',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
@@ -70,6 +80,7 @@ class Scheduler extends StatelessWidget {
             ),
           ),
         ),
+        body: const CalendarDrawer(),
         drawer: const DrawerSide(),
       ),
     );
