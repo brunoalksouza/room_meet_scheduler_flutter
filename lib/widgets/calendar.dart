@@ -2,21 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: CalendarDrawer(),
-      ),
-    );
-  }
-}
-
 class CalendarDrawer extends StatefulWidget {
   const CalendarDrawer({
     super.key,
@@ -36,13 +21,19 @@ class _CalendarDrawerState extends State<CalendarDrawer> {
   Widget build(BuildContext context) {
     initializeDateFormatting('pt_BR');
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height, // Ocupa  a altura máxima
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: TableCalendar(
-          firstDay: DateTime.utc(2010, 10, 16),
-          lastDay: DateTime.utc(2030, 3, 14),
+          calendarStyle: const CalendarStyle(
+              defaultTextStyle: TextStyle(fontSize: 18),
+              weekendTextStyle: TextStyle(fontSize: 18),
+              todayTextStyle: TextStyle(fontSize: 18),
+              selectedTextStyle: TextStyle(fontSize: 18, color: Colors.white),
+              outsideTextStyle: TextStyle(fontSize: 18, color: Colors.grey)),
+          firstDay: DateTime.now().copyWith(day: 1, month: 1),
+          lastDay: DateTime.now().copyWith(day: 31, month: 12),
           focusedDay: DateTime.now(),
           locale: 'pt_BR',
           availableGestures: AvailableGestures.none,
@@ -50,6 +41,9 @@ class _CalendarDrawerState extends State<CalendarDrawer> {
           headerStyle: const HeaderStyle(
             titleCentered: true,
             formatButtonVisible: false,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 240, 240, 240),
+            ),
           ),
           selectedDayPredicate: (day) {
             return isSameDay(_selectedDay, day);
@@ -71,6 +65,13 @@ class _CalendarDrawerState extends State<CalendarDrawer> {
               },
             );
           },
+
+          daysOfWeekStyle: const DaysOfWeekStyle(
+            weekdayStyle: TextStyle(fontSize: 18), // Estilo dos dias da semana
+            weekendStyle: TextStyle(fontSize: 18), // Estilo dos fins de semana
+          ),
+          rowHeight: MediaQuery.of(context).size.height *
+              0.10, // Ocupa a altura máxima
         ),
       ),
     );
