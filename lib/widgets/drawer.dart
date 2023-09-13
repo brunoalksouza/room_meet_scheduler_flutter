@@ -19,7 +19,7 @@ class DrawerSide extends StatelessWidget {
           ),
           child: ListView(
             padding: EdgeInsets.zero,
-            children: const <Widget>[CalendarDrawer()],
+            children: const <Widget>[Calendar()],
           ),
         ),
       ),

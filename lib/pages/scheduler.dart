@@ -72,8 +72,8 @@ class Scheduler extends StatelessWidget {
           ),
         ),
       ),
-      body: const CalendarDrawer(),
       drawer: const DrawerSide(),
+      body: const Calendar(),
     );
   }
 }
