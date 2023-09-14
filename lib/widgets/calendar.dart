@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/utils/event.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -16,6 +17,9 @@ class _CalendarState extends State<Calendar> {
   DateTime _selectedDay = DateTime.now();
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
+  final TextEditingController _eventController = TextEditingController();
+  Map<DateTime, List<Event>> events = {};
+
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting('pt_BR');
@@ -28,7 +32,7 @@ class _CalendarState extends State<Calendar> {
             calendarStyle: const CalendarStyle(
               defaultTextStyle: TextStyle(fontSize: 22),
               weekendTextStyle: TextStyle(fontSize: 22),
-              todayTextStyle: TextStyle(fontSize: 22),
+              todayTextStyle: TextStyle(fontSize: 22, color: Colors.white),
               selectedTextStyle: TextStyle(fontSize: 22, color: Colors.white),
               outsideTextStyle: TextStyle(fontSize: 22, color: Colors.grey),
               tableBorder: TableBorder(
@@ -77,6 +81,37 @@ class _CalendarState extends State<Calendar> {
             daysOfWeekHeight: 70,
           ),
         ),
+        ElevatedButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  scrollable: true,
+                  title: const Text('Agende um horário'),
+                  content: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: TextField(
+                      controller: _eventController,
+                    ),
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      onPressed: () {
+                        events.addAll({
+                          _selectedDay: [Event(_eventController.text)]
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Submit'),
+                    )
+                  ],
+                );
+              },
+            );
+          },
+          child: const Icon(Icons.add),
+        )
       ],
     );
   }
