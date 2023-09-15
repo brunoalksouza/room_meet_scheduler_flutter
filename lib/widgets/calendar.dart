@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/utils/event.dart';
+import 'package:room_meet_scheduler_flutter/widgets/select_range_hour.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -14,7 +15,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  DateTime _selectedDay = DateTime.now();
+  DateTime _selectedDate = DateTime.now();
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
   final TextEditingController _titleController = TextEditingController();
@@ -60,14 +61,14 @@ class _CalendarState extends State<Calendar> {
               ),
             ),
             selectedDayPredicate: (day) {
-              return isSameDay(_selectedDay, day);
+              return isSameDay(_selectedDate, day);
             },
             onDaySelected: (selectedDay, focusedDay) {
               setState(
                 () {
                   if (selectedDay.weekday != DateTime.saturday &&
                       selectedDay.weekday != DateTime.sunday) {
-                    _selectedDay = selectedDay;
+                    _selectedDate = selectedDay;
                   }
                 },
               );
@@ -102,6 +103,8 @@ class _CalendarState extends State<Calendar> {
                           ),
                         ),
                         const SizedBox(height: 18),
+                        const SelectRangeHour(),
+                        const SizedBox(height: 18),
                         TextField(
                           controller: _descriptionController,
                           maxLines: 3,
@@ -122,7 +125,7 @@ class _CalendarState extends State<Calendar> {
                     ElevatedButton(
                       onPressed: () {
                         events.addAll({
-                          _selectedDay: [Event(_titleController.text)]
+                          _selectedDate: [Event(_titleController.text)]
                         });
                         Navigator.of(context).pop();
                       },
