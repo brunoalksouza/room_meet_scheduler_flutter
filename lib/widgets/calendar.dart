@@ -17,7 +17,8 @@ class _CalendarState extends State<Calendar> {
   DateTime _selectedDay = DateTime.now();
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
-  final TextEditingController _eventController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   Map<DateTime, List<Event>> events = {};
 
   @override
@@ -91,15 +92,37 @@ class _CalendarState extends State<Calendar> {
                   title: const Text('Agende um horário'),
                   content: Padding(
                     padding: const EdgeInsets.all(8),
-                    child: TextField(
-                      controller: _eventController,
+                    child: Column(
+                      children: [
+                        TextField(
+                          autofocus: true,
+                          controller: _titleController,
+                          decoration: const InputDecoration(
+                            labelText: 'Titulo',
+                          ),
+                        ),
+                        const SizedBox(height: 18),
+                        TextField(
+                          controller: _descriptionController,
+                          maxLines: 3,
+                          decoration: InputDecoration(
+                            floatingLabelAlignment:
+                                FloatingLabelAlignment.start,
+                            hintText: 'Descrição',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            filled: true,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   actions: [
                     ElevatedButton(
                       onPressed: () {
                         events.addAll({
-                          _selectedDay: [Event(_eventController.text)]
+                          _selectedDay: [Event(_titleController.text)]
                         });
                         Navigator.of(context).pop();
                       },
