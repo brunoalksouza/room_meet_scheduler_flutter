@@ -10,7 +10,7 @@ class Scheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String selectedDay =
+    String selectedDate =
         DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(DateTime.now());
 
     return Scaffold(
@@ -30,7 +30,7 @@ class Scheduler extends StatelessWidget {
               ),
             ),
             Tooltip(
-              message: selectedDay,
+              message: selectedDate,
               child: TextButton(
                 onPressed: () {},
                 style: ButtonStyle(

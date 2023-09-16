@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:room_meet_scheduler_flutter/utils/event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -15,7 +16,10 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  DateTime _selectedDate = DateTime.now();
+  DateTime todayDate = DateTime.now();
+
+  late final String selectedDay;
+
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
   final TextEditingController _titleController = TextEditingController();
@@ -61,14 +65,14 @@ class _CalendarState extends State<Calendar> {
               ),
             ),
             selectedDayPredicate: (day) {
-              return isSameDay(_selectedDate, day);
+              return isSameDay(todayDate, day);
             },
             onDaySelected: (selectedDay, focusedDay) {
               setState(
                 () {
                   if (selectedDay.weekday != DateTime.saturday &&
                       selectedDay.weekday != DateTime.sunday) {
-                    _selectedDate = selectedDay;
+                    todayDate = selectedDay;
                   }
                 },
               );
@@ -79,8 +83,8 @@ class _CalendarState extends State<Calendar> {
               weekendStyle:
                   TextStyle(fontSize: 22), // Estilo dos fins de semana
             ),
-            rowHeight: MediaQuery.of(context).size.height * 0.13,
-            daysOfWeekHeight: 70,
+            rowHeight: MediaQuery.of(context).size.height * 0.10,
+            daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
           ),
         ),
         ElevatedButton(
@@ -102,7 +106,7 @@ class _CalendarState extends State<Calendar> {
                             labelText: 'Titulo',
                           ),
                         ),
-                        const DropdownSelectHourRange(),
+                        DropdownSelectHourRange(selectedDay: todayDate),
                         const SizedBox(height: 18),
                         TextField(
                           controller: _descriptionController,
@@ -125,7 +129,7 @@ class _CalendarState extends State<Calendar> {
                       child: ElevatedButton(
                         onPressed: () {
                           events.addAll({
-                            _selectedDate: [Event(_titleController.text)]
+                            todayDate: [Event(_titleController.text)]
                           });
                           Navigator.of(context).pop();
                         },
