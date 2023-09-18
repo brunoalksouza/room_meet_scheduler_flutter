@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/utils/corestore.dart';
+import 'package:room_meet_scheduler_flutter/widgets/select_range_hour.dart';
 
 const List<String> hours = [
   '07:00',
@@ -28,34 +30,6 @@ const List<String> hours = [
   '19:00',
 ];
 
-class HourDropdown extends StatelessWidget {
-  final String value;
-  final List<String> items;
-  final ValueChanged<String> onChanged;
-
-  const HourDropdown({
-    super.key,
-    required this.value,
-    required this.items,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      menuMaxHeight: 250,
-      value: value,
-      onChanged: (value) {},
-      items: items.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
-  }
-}
-
 class DropdownSelectHourRange extends StatefulWidget {
   const DropdownSelectHourRange({Key? key, required this.selectedDay})
       : super(key: key);
@@ -68,32 +42,27 @@ class DropdownSelectHourRange extends StatefulWidget {
 }
 
 class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
-  String startHour = hours.first;
-  String endHour = hours.first;
-
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          widget.selectedDay.toString(),
-        ),
+        Text(widget.selectedDay.toString()),
         HourDropdown(
-          value: startHour,
+          value: CoreStore.start ?? hours.first,
           items: hours,
           onChanged: (value) {
             setState(() {
-              startHour = value!;
+              CoreStore.start = value;
             });
           },
         ),
         const Text(' -  '),
         HourDropdown(
-          value: endHour,
+          value: CoreStore.end ?? hours.first,
           items: hours,
           onChanged: (value) {
             setState(() {
-              endHour = value;
+              CoreStore.end = value;
             });
           },
         ),

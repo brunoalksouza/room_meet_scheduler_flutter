@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:room_meet_scheduler_flutter/utils/event.dart';
-import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
+import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:room_meet_scheduler_flutter/widgets/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -24,7 +23,7 @@ class _CalendarState extends State<Calendar> {
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  Map<DateTime, List<Event>> events = {};
+  List<Event> events = [];
 
   @override
   Widget build(BuildContext context) {
@@ -87,62 +86,12 @@ class _CalendarState extends State<Calendar> {
             daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
           ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  scrollable: true,
-                  title: const Text('Agende um horário'),
-                  content: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      children: [
-                        TextField(
-                          autofocus: true,
-                          controller: _titleController,
-                          decoration: const InputDecoration(
-                            labelText: 'Titulo',
-                          ),
-                        ),
-                        DropdownSelectHourRange(selectedDay: todayDate),
-                        const SizedBox(height: 18),
-                        TextField(
-                          controller: _descriptionController,
-                          maxLines: 3,
-                          decoration: InputDecoration(
-                            floatingLabelAlignment:
-                                FloatingLabelAlignment.start,
-                            hintText: 'Descrição',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  actions: [
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          events.addAll({
-                            todayDate: [Event(_titleController.text)]
-                          });
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Submit'),
-                      ),
-                    )
-                  ],
-                );
-              },
-            );
-          },
-          child: const Icon(Icons.add),
-        )
+        Button(
+          descriptionController: _descriptionController,
+          titleController: _titleController,
+          selectedDate: todayDate,
+          events: events,
+        ),
       ],
     );
   }
