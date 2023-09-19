@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
-import 'package:room_meet_scheduler_flutter/widgets/drawer.dart';
 
 class Scheduler extends StatelessWidget {
   const Scheduler({
@@ -72,7 +71,6 @@ class Scheduler extends StatelessWidget {
           ),
         ),
       ),
-      drawer: const DrawerSide(),
       body: const Calendar(),
     );
   }

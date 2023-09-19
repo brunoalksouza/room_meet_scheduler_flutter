@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
-class Button extends StatelessWidget {
+class AlertDialogScheduler extends StatelessWidget {
   final TextEditingController descriptionController;
   final TextEditingController titleController;
   final DateTime selectedDate;
   final List<Event> events;
 
-  const Button({
+  const AlertDialogScheduler({
     super.key,
     required this.descriptionController,
     required this.titleController,
@@ -37,7 +37,7 @@ class Button extends StatelessWidget {
                         labelText: 'Titulo',
                       ),
                     ),
-                    DropdownSelectHourRange(selectedDay: selectedDate),
+                    DropdownSelectHourRange(selectedDate: selectedDate),
                     const SizedBox(height: 18),
                     TextField(
                       controller: descriptionController,

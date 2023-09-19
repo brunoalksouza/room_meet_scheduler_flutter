@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HourDropdown extends StatelessWidget {
+class HourDropdownConstructor extends StatelessWidget {
   final String value;
   final List<String> items;
   final ValueChanged<String> onChanged;
 
-  const HourDropdown({
+  const HourDropdownConstructor({
     super.key,
     required this.value,
     required this.items,

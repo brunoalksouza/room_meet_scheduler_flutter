@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
-import 'package:room_meet_scheduler_flutter/widgets/button.dart';
+import 'package:room_meet_scheduler_flutter/widgets/alert_dialog_scheduler.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -16,8 +16,6 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   DateTime todayDate = DateTime.now();
-
-  late final String selectedDay;
 
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
@@ -43,8 +41,8 @@ class _CalendarState extends State<Calendar> {
               tableBorder: TableBorder(
                 right: BorderSide(width: 0.5, color: Colors.grey),
                 left: BorderSide(width: 0.5, color: Colors.grey),
-                top: BorderSide(width: 0.5, color: Colors.grey),
-                bottom: BorderSide(width: 0.5, color: Colors.grey),
+                top: BorderSide(width: 1, color: Colors.grey),
+                bottom: BorderSide(width: 1, color: Colors.grey),
                 horizontalInside: BorderSide(width: 0.5, color: Colors.grey),
                 verticalInside: BorderSide(width: 0.5, color: Colors.grey),
               ),
@@ -63,9 +61,6 @@ class _CalendarState extends State<Calendar> {
                 color: Color.fromARGB(255, 240, 240, 240),
               ),
             ),
-            selectedDayPredicate: (day) {
-              return isSameDay(todayDate, day);
-            },
             onDaySelected: (selectedDay, focusedDay) {
               setState(
                 () {
@@ -77,16 +72,21 @@ class _CalendarState extends State<Calendar> {
               );
             },
             daysOfWeekStyle: const DaysOfWeekStyle(
+              decoration:
+                  BoxDecoration(color: Color.fromARGB(112, 141, 196, 255)),
               weekdayStyle:
                   TextStyle(fontSize: 22), // Estilo dos dias da semana
               weekendStyle:
                   TextStyle(fontSize: 22), // Estilo dos fins de semana
             ),
+            selectedDayPredicate: (day) {
+              return isSameDay(todayDate, day);
+            },
             rowHeight: MediaQuery.of(context).size.height * 0.10,
             daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
           ),
         ),
-        Button(
+        AlertDialogScheduler(
           descriptionController: _descriptionController,
           titleController: _titleController,
           selectedDate: todayDate,

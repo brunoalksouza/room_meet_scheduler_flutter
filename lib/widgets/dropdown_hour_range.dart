@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:room_meet_scheduler_flutter/utils/corestore.dart';
-import 'package:room_meet_scheduler_flutter/widgets/select_range_hour.dart';
+import 'package:room_meet_scheduler_flutter/widgets/hour_dropdown_constructor.dart';
 
 const List<String> hours = [
   '07:00',
@@ -31,9 +30,9 @@ const List<String> hours = [
 ];
 
 class DropdownSelectHourRange extends StatefulWidget {
-  const DropdownSelectHourRange({Key? key, required this.selectedDay})
+  const DropdownSelectHourRange({Key? key, required this.selectedDate})
       : super(key: key);
-  final DateTime selectedDay;
+  final DateTime selectedDate;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -41,28 +40,31 @@ class DropdownSelectHourRange extends StatefulWidget {
       _DropdownSelectHourRangeState();
 }
 
+String? start;
+String? end;
+
 class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(widget.selectedDay.toString()),
-        HourDropdown(
-          value: CoreStore.start ?? hours.first,
+        Text(widget.selectedDate.toString()),
+        HourDropdownConstructor(
+          value: start ?? hours.first,
           items: hours,
           onChanged: (value) {
             setState(() {
-              CoreStore.start = value;
+              start = value; // Update the start time
             });
           },
         ),
         const Text(' -  '),
-        HourDropdown(
-          value: CoreStore.end ?? hours.first,
+        HourDropdownConstructor(
+          value: end ?? hours.first,
           items: hours,
           onChanged: (value) {
             setState(() {
-              CoreStore.end = value;
+              end = value; // Update the end time
             });
           },
         ),
