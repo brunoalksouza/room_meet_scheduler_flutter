@@ -54,7 +54,7 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
           items: hours,
           onChanged: (value) {
             setState(() {
-              start = value; // Update the start time
+              start = value;
             });
           },
         ),
@@ -64,7 +64,7 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
           items: hours,
           onChanged: (value) {
             setState(() {
-              end = value; // Update the end time
+              end = value;
             });
           },
         ),

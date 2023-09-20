@@ -16,11 +16,10 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   DateTime todayDate = DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
   List<Event> events = [];
 
   @override
@@ -67,13 +66,14 @@ class _CalendarState extends State<Calendar> {
                   if (selectedDay.weekday != DateTime.saturday &&
                       selectedDay.weekday != DateTime.sunday) {
                     todayDate = selectedDay;
+                    selectedDate = selectedDay;
                   }
                 },
               );
             },
             daysOfWeekStyle: const DaysOfWeekStyle(
               decoration:
-                  BoxDecoration(color: Color.fromARGB(112, 141, 196, 255)),
+                  BoxDecoration(color: Color.fromARGB(61, 141, 196, 255)),
               weekdayStyle:
                   TextStyle(fontSize: 22), // Estilo dos dias da semana
               weekendStyle:
@@ -87,9 +87,7 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
         AlertDialogScheduler(
-          descriptionController: _descriptionController,
-          titleController: _titleController,
-          selectedDate: todayDate,
+          selectedDate: selectedDate,
           events: events,
         ),
       ],

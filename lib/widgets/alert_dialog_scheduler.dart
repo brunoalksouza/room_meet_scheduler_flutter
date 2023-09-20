@@ -3,18 +3,18 @@ import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
 class AlertDialogScheduler extends StatelessWidget {
-  final TextEditingController descriptionController;
-  final TextEditingController titleController;
   final DateTime selectedDate;
   final List<Event> events;
 
-  const AlertDialogScheduler({
+  AlertDialogScheduler({
     super.key,
-    required this.descriptionController,
-    required this.titleController,
     required this.selectedDate,
     required this.events,
   });
+
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
