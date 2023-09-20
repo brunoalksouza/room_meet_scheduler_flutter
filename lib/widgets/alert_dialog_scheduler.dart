@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
@@ -14,6 +15,10 @@ class AlertDialogScheduler extends StatelessWidget {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+  String formatDate(DateTime selectedDate) {
+    return DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(selectedDate);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +67,7 @@ class AlertDialogScheduler extends StatelessWidget {
                           title: titleController.text,
                           description: descriptionController.text,
                           date: selectedDate,
+                          formatedDate: formatDate(selectedDate),
                           start: "",
                           end: "",
                         ),
