@@ -15,7 +15,6 @@ class AlertDialogScheduler extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

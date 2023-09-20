@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:room_meet_scheduler_flutter/widgets/hour_dropdown_constructor.dart';
 
 const List<String> hours = [
@@ -48,7 +49,10 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(widget.selectedDate.toString()),
+        Text(
+          DateFormat("EEEE, d 'de' MMMM - ", 'pt_BR')
+              .format(widget.selectedDate),
+        ),
         HourDropdownConstructor(
           value: start ?? hours.first,
           items: hours,
