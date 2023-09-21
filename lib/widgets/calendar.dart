@@ -46,6 +46,7 @@ class _CalendarState extends State<Calendar> {
                 verticalInside: BorderSide(width: 0.5, color: Colors.grey),
               ),
             ),
+           
             firstDay: DateTime.now().copyWith(day: 1, month: 1),
             lastDay: DateTime.now().copyWith(day: 31, month: 12),
             focusedDay: DateTime.now(),
@@ -73,7 +74,7 @@ class _CalendarState extends State<Calendar> {
             },
             daysOfWeekStyle: const DaysOfWeekStyle(
               decoration:
-                  BoxDecoration(color: Color.fromARGB(61, 141, 196, 255)),
+                  BoxDecoration(color: Color.fromARGB(60, 189, 189, 189)),
               weekdayStyle:
                   TextStyle(fontSize: 22), // Estilo dos dias da semana
               weekendStyle:

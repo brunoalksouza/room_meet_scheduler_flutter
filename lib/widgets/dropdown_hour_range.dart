@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:room_meet_scheduler_flutter/widgets/hour_dropdown_constructor.dart';
 
 const List<String> hours = [
   '07:00',
@@ -45,6 +44,8 @@ String? start;
 String? end;
 
 class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
+  List<String> endDropdownItems = hours;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -53,24 +54,45 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
           DateFormat("EEEE, d 'de' MMMM - ", 'pt_BR')
               .format(widget.selectedDate),
         ),
-        HourDropdownConstructor(
+        DropdownButton(
+          menuMaxHeight: 250,
           value: start ?? hours.first,
-          items: hours,
-          onChanged: (value) {
-            setState(() {
-              start = value;
-            });
-          },
+          items: hours.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: ((value) {
+            setState(
+              () {
+                start = value.toString();
+                endDropdownItems =
+                    hours.where((hour) => hour.compareTo(start!) >= 1).toList();
+              },
+            );
+            if (!endDropdownItems.contains(end)) {
+              end = endDropdownItems.first;
+            } else {
+              end = endDropdownItems.first;
+            }
+          }),
         ),
         const Text(' -  '),
-        HourDropdownConstructor(
+        DropdownButton(
+          menuMaxHeight: 250,
           value: end ?? hours.first,
-          items: hours,
-          onChanged: (value) {
+          items: endDropdownItems.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: ((value) {
             setState(() {
-              end = value;
+              end = value.toString();
             });
-          },
+          }),
         ),
       ],
     );
