@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
       supportedLocales: const <Locale>[
         Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       ],
-      title: 'PDF Submitter',
+      title: 'Meet Scheduler',
       theme: ThemeData(
         dialogTheme: DialogTheme(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
