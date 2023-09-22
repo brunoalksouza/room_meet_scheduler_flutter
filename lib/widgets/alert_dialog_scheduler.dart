@@ -68,8 +68,8 @@ class AlertDialogScheduler extends StatelessWidget {
                           description: descriptionController.text,
                           date: selectedDate,
                           formatedDate: formatDate(selectedDate),
-                          start: "",
-                          end: "",
+                          start: getStartRange(start!),
+                          end: getEndRange(end!),
                         ),
                       });
                       Navigator.of(context).pop();

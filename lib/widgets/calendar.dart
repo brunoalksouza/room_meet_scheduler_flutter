@@ -31,6 +31,8 @@ class _CalendarState extends State<Calendar> {
         MouseRegion(
           cursor: SystemMouseCursors.click,
           child: TableCalendar(
+            rowHeight: MediaQuery.of(context).size.height * 0.10,
+            daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
             calendarStyle: const CalendarStyle(
               defaultTextStyle: TextStyle(fontSize: 22),
               weekendTextStyle: TextStyle(fontSize: 22),
@@ -46,7 +48,6 @@ class _CalendarState extends State<Calendar> {
                 verticalInside: BorderSide(width: 0.5, color: Colors.grey),
               ),
             ),
-           
             firstDay: DateTime.now().copyWith(day: 1, month: 1),
             lastDay: DateTime.now().copyWith(day: 31, month: 12),
             focusedDay: DateTime.now(),
@@ -83,8 +84,13 @@ class _CalendarState extends State<Calendar> {
             selectedDayPredicate: (day) {
               return isSameDay(todayDate, day);
             },
-            rowHeight: MediaQuery.of(context).size.height * 0.10,
-            daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
+            eventLoader: (day) {
+              return events.where((event) {
+                return event.date.day == day.day &&
+                    event.date.month == day.month &&
+                    event.date.year == day.year;
+              }).toList();
+            },
           ),
         ),
         AlertDialogScheduler(

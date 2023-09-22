@@ -69,6 +69,7 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
                 start = value.toString();
                 endDropdownItems =
                     hours.where((hour) => hour.compareTo(start!) >= 1).toList();
+                getStartRange(start!);
               },
             );
             if (!endDropdownItems.contains(end)) {
@@ -89,10 +90,19 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
           onChanged: ((value) {
             setState(() {
               end = value.toString();
+              getEndRange(end!);
             });
           }),
         ),
       ],
     );
   }
+}
+
+String getStartRange(String start) {
+  return start;
+}
+
+String getEndRange(String end) {
+  return end;
 }
