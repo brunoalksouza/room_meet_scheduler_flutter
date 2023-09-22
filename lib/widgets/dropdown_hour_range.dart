@@ -73,15 +73,13 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
             );
             if (!endDropdownItems.contains(end)) {
               end = endDropdownItems.first;
-            } else {
-              end = endDropdownItems.first;
             }
           }),
         ),
         const Text(' -  '),
         DropdownButton(
           menuMaxHeight: 250,
-          value: end ?? hours.first,
+          value: end ?? hours[1],
           items: endDropdownItems.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
