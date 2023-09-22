@@ -35,7 +35,7 @@ class _CalendarState extends State<Calendar> {
             daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
             calendarStyle: const CalendarStyle(
               defaultTextStyle: TextStyle(fontSize: 22),
-              weekendTextStyle: TextStyle(fontSize: 22),
+              weekendTextStyle: TextStyle(fontSize: 22, color: Colors.grey),
               todayTextStyle: TextStyle(fontSize: 22, color: Colors.white),
               selectedTextStyle: TextStyle(fontSize: 22, color: Colors.white),
               outsideTextStyle: TextStyle(fontSize: 22, color: Colors.grey),
