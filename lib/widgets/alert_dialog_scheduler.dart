@@ -22,7 +22,7 @@ class AlertDialogScheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return FloatingActionButton(
       onPressed: () {
         showDialog(
           context: context,
@@ -48,7 +48,7 @@ class AlertDialogScheduler extends StatelessWidget {
                       maxLines: 3,
                       decoration: InputDecoration(
                         floatingLabelAlignment: FloatingLabelAlignment.start,
-                        hintText: 'Descrição',
+                        hintText: 'Integrantes, assuntos, etc.',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -74,7 +74,9 @@ class AlertDialogScheduler extends StatelessWidget {
                       });
                       Navigator.of(context).pop();
                     },
-                    child: const Text('Submit'),
+                    child: const Text(
+                      'Submit',
+                    ),
                   ),
                 )
               ],

@@ -66,8 +66,8 @@ class _CalendarState extends State<Calendar> {
               setState(
                 () {
                   if (selectedDay.weekday != DateTime.saturday &&
-                      selectedDay.weekday != DateTime.sunday) {
-                    todayDate = selectedDay;
+                      selectedDay.weekday != DateTime.sunday &&
+                      selectedDay.isAfter(todayDate)) {
                     selectedDate = selectedDay;
                   }
                 },
@@ -82,7 +82,7 @@ class _CalendarState extends State<Calendar> {
                   TextStyle(fontSize: 22), // Estilo dos fins de semana
             ),
             selectedDayPredicate: (day) {
-              return isSameDay(todayDate, day);
+              return isSameDay(selectedDate, day);
             },
             eventLoader: (day) {
               return events.where((event) {

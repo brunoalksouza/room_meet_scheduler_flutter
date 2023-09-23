@@ -49,7 +49,7 @@ class Scheduler extends StatelessWidget {
                   splashFactory: NoSplash.splashFactory, // Remove splash effect
                 ),
                 child: const Text(
-                  'test',
+                  'Hoje',
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
