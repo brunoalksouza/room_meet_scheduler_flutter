@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 const List<String> hours = [
+  '06:30',
   '07:00',
   '07:30',
   '08:00',
@@ -27,6 +28,7 @@ const List<String> hours = [
   '18:00',
   '18:30',
   '19:00',
+  '19:30',
 ];
 
 class DropdownSelectHourRange extends StatefulWidget {

@@ -22,7 +22,12 @@ class AlertDialogScheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
+    return ElevatedButton(
+      style: ButtonStyle(
+        fixedSize: MaterialStateProperty.all<Size>(
+          const Size(500.0, 40.0),
+        ),
+      ),
       onPressed: () {
         showDialog(
           context: context,
@@ -64,6 +69,19 @@ class AlertDialogScheduler extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(
+                          'Cancelar',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                    ElevatedButton(
+                      onPressed: () {
                         events.add(
                           Event(
                             title: titleController.text,
@@ -86,19 +104,6 @@ class AlertDialogScheduler extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.01),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Text(
-                          'Cancelar',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ], // Remove the semicolon here
@@ -106,7 +111,7 @@ class AlertDialogScheduler extends StatelessWidget {
           },
         );
       },
-      child: const Icon(Icons.add),
+      child: Text('Agendar para ${formatDate(selectedDate)}'),
     );
   }
 }
