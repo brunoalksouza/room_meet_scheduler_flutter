@@ -15,5 +15,14 @@ class Event {
     required this.start,
     required this.end,
   });
-
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'date': date.toIso8601String(),
+      'formatedDate': formatedDate,
+      'start': start,
+      'end': end,
+    };
+  }
 }

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/alert_dialog_scheduler.dart';
-import 'package:room_meet_scheduler_flutter/widgets/events_list.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _CalendarState createState() => _CalendarState();
 }
 
@@ -30,9 +28,19 @@ class _CalendarState extends State<Calendar> {
     return Row(
       children: [
         Expanded(
-          flex: 2,
+          flex: 1,
           child: Column(
             children: [
+              Container(
+                padding: const EdgeInsets.all(16.0),
+                child: const Text(
+                  'Agendamentos',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
               AlertDialogScheduler(
                 selectedDate: selectedDate,
                 events: events,
@@ -89,10 +97,8 @@ class _CalendarState extends State<Calendar> {
               daysOfWeekStyle: const DaysOfWeekStyle(
                 decoration:
                     BoxDecoration(color: Color.fromARGB(60, 189, 189, 189)),
-                weekdayStyle:
-                    TextStyle(fontSize: 22), // Estilo dos dias da semana
-                weekendStyle:
-                    TextStyle(fontSize: 22), // Estilo dos fins de semana
+                weekdayStyle: TextStyle(fontSize: 22),
+                weekendStyle: TextStyle(fontSize: 22),
               ),
               selectedDayPredicate: (day) {
                 return isSameDay(selectedDate, day);

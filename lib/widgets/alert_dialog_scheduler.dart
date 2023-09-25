@@ -25,8 +25,10 @@ class AlertDialogScheduler extends StatelessWidget {
     return ElevatedButton(
       style: ButtonStyle(
         fixedSize: MaterialStateProperty.all<Size>(
-          const Size(500.0, 40.0),
+          const Size(400.0, 40.0),
         ),
+        textStyle:
+            MaterialStateProperty.all<TextStyle>(const TextStyle(fontSize: 18)),
       ),
       onPressed: () {
         showDialog(
