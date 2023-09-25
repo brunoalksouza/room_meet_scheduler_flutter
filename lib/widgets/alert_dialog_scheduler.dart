@@ -1,24 +1,24 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
 class AlertDialogScheduler extends StatelessWidget {
   final DateTime selectedDate;
   final List<Event> events;
+  final void Function(Event) addEvent;
 
   AlertDialogScheduler({
     Key? key, // Use Key? key instead of super.key
     required this.selectedDate,
     required this.events,
+    required this.addEvent,
   });
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-
-  String formatDate(DateTime selectedDate) {
-    return DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(selectedDate);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,16 +84,16 @@ class AlertDialogScheduler extends StatelessWidget {
                     SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                     ElevatedButton(
                       onPressed: () {
-                        events.add(
+                        addEvent(
                           Event(
                             title: titleController.text,
                             description: descriptionController.text,
                             date: selectedDate,
                             formatedDate: formatDate(selectedDate),
-                            start: getStartRange(
-                                start!), // Define getStartRange function
+                            start: getStartRange(start ??
+                                "6:30"), // Define getStartRange function
                             end: getEndRange(
-                                end!), // Define getEndRange function
+                                end ?? "7:00"), // Define getEndRange function
                           ),
                         );
                         Navigator.of(context).pop();
