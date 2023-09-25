@@ -66,8 +66,7 @@ class _CalendarState extends State<Calendar> {
               setState(
                 () {
                   if (selectedDay.weekday != DateTime.saturday &&
-                      selectedDay.weekday != DateTime.sunday &&
-                      selectedDay.isAfter(todayDate)) {
+                      selectedDay.weekday != DateTime.sunday) {
                     selectedDate = selectedDay;
                   }
                 },

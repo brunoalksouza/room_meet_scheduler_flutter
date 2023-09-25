@@ -14,6 +14,7 @@ class Scheduler extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.white,
         title: Row(
           children: [
@@ -56,6 +57,11 @@ class Scheduler extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+            const Text(
+              'Sala X',
+              style: TextStyle(color: Colors.black),
             ),
           ],
         ),

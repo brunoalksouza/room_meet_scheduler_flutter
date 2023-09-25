@@ -8,7 +8,7 @@ class AlertDialogScheduler extends StatelessWidget {
   final List<Event> events;
 
   AlertDialogScheduler({
-    super.key,
+    Key? key, // Use Key? key instead of super.key
     required this.selectedDate,
     required this.events,
   });
@@ -59,27 +59,49 @@ class AlertDialogScheduler extends StatelessWidget {
                 ),
               ),
               actions: [
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      events.addAll({
-                        Event(
-                          title: titleController.text,
-                          description: descriptionController.text,
-                          date: selectedDate,
-                          formatedDate: formatDate(selectedDate),
-                          start: getStartRange(start!),
-                          end: getEndRange(end!),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        events.add(
+                          Event(
+                            title: titleController.text,
+                            description: descriptionController.text,
+                            date: selectedDate,
+                            formatedDate: formatDate(selectedDate),
+                            start: getStartRange(
+                                start!), // Define getStartRange function
+                            end: getEndRange(
+                                end!), // Define getEndRange function
+                          ),
+                        );
+                        Navigator.of(context).pop();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(
+                          'Agendar',
+                          style: TextStyle(fontSize: 18),
                         ),
-                      });
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text(
-                      'Submit',
+                      ),
                     ),
-                  ),
-                )
-              ],
+                    SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(
+                          'Cancelar',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ], // Remove the semicolon here
             );
           },
         );
