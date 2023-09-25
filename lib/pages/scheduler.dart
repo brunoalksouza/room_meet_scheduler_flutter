@@ -1,5 +1,5 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
 
 class Scheduler extends StatelessWidget {
@@ -9,8 +9,7 @@ class Scheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String selectedDate =
-        DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(DateTime.now());
+    String selectedDate = formatDate(DateTime.now());
 
     return Scaffold(
       appBar: AppBar(

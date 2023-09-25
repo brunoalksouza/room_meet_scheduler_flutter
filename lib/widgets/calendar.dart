@@ -79,7 +79,28 @@ class _CalendarState extends State<Calendar> {
         end: "8:00"),
     Event(
         title: "title",
-        description: "Testeeee",
+        description: "description",
+        date: DateTime.now(),
+        formatedDate: formatDate(DateTime.now()),
+        start: "07:00",
+        end: "8:00"),
+    Event(
+        title: "title",
+        description: "description",
+        date: DateTime.now(),
+        formatedDate: formatDate(DateTime.now()),
+        start: "07:00",
+        end: "8:00"),
+    Event(
+        title: "title",
+        description: "description",
+        date: DateTime.now(),
+        formatedDate: formatDate(DateTime.now()),
+        start: "07:00",
+        end: "8:00"),
+    Event(
+        title: "title",
+        description: "description",
         date: DateTime.now(),
         formatedDate: formatDate(DateTime.now()),
         start: "07:00",
@@ -101,54 +122,62 @@ class _CalendarState extends State<Calendar> {
       children: [
         Expanded(
           flex: 1,
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: const Text(
-                  'Agendamentos',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Text(
+                    'Agendamentos',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.all(MediaQuery.of(context).size.width * 0.015),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.55,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: events.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(events[index].title),
-                        subtitle: Text(
-                          '${formatDate(events[index].date)} ${events[index].start} - ${events[index].end}\n${events[index].description}',
-                        ),
-                      );
-                    },
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: ListView.builder(
+                      itemCount: events.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          tileColor: Colors.grey[200],
+                          title: Text(events[index].title),
+                          subtitle: Text(
+                            '${formatDate(events[index].date)} ${events[index].start} - ${events[index].end}\n${events[index].description}',
+                          ),
+                          minVerticalPadding: 8,
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              AlertDialogScheduler(
-                selectedDate: selectedDate,
-                events: events,
-                addEvent: addEvent,
-              ),
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                AlertDialogScheduler(
+                  selectedDate: selectedDate,
+                  events: events,
+                  addEvent: addEvent,
+                ),
+              ],
+            ),
           ),
         ),
         Expanded(
           flex: 3,
           child: Padding(
-            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.width * 0.02,
+              right: MediaQuery.of(context).size.width * 0.02,
+              bottom: MediaQuery.of(context).size.width * 0.02,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
