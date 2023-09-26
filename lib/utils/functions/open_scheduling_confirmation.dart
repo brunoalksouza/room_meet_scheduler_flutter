@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
@@ -23,8 +24,10 @@ void openSchedulingConfirmation(
               TextField(
                 autofocus: true,
                 controller: titleController,
+                cursorColor: ColorsPallete.darkerGrey,
                 decoration: const InputDecoration(
                   labelText: 'Titulo',
+                  focusedBorder: UnderlineInputBorder(),
                 ),
               ),
               DropdownSelectHourRange(selectedDate: selectedDate),
@@ -49,9 +52,10 @@ void openSchedulingConfirmation(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      ColorsPallete.primaryRed),
+                ),
                 child: const Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text(
@@ -59,9 +63,18 @@ void openSchedulingConfirmation(
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
               SizedBox(width: MediaQuery.of(context).size.width * 0.01),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      ColorsPallete.primaryGreen),
+                ),
+
+                //#F44336
                 onPressed: () {
                   addEvent(
                     Event(

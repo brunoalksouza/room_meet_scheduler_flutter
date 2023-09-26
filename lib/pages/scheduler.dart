@@ -18,15 +18,11 @@ class Scheduler extends StatelessWidget {
         backgroundColor: ColorsPallete.primaryGreen,
         title: Row(
           children: [
-            const Icon(
-              Icons.calendar_month,
-              color: Colors.black,
-            ),
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.only(right: 20),
               child: Text(
                 'Planejador de reuniões',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: ColorsPallete.primaryWhite),
               ),
             ),
             Tooltip(
@@ -39,7 +35,7 @@ class Scheduler extends StatelessWidget {
                       ),
                   side: MaterialStateProperty.all<BorderSide>(
                     const BorderSide(
-                      color: Colors.black, // Border color
+                      color: ColorsPallete.primaryWhite, // Border color
                       width: 1.0, // Border width
                     ),
                   ),
@@ -61,7 +57,7 @@ class Scheduler extends StatelessWidget {
             SizedBox(width: MediaQuery.of(context).size.width * 0.01),
             const Text(
               'Sala X',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: ColorsPallete.white),
             ),
           ],
         ),
@@ -69,7 +65,7 @@ class Scheduler extends StatelessWidget {
           builder: (context) => IconButton(
             icon: const Icon(
               Icons.menu,
-              color: Colors.black,
+              color: ColorsPallete.primaryWhite,
             ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
@@ -78,6 +74,7 @@ class Scheduler extends StatelessWidget {
         ),
       ),
       body: const Calendar(),
+      backgroundColor: const Color.fromARGB(255, 40, 2, 87),
     );
   }
 }
