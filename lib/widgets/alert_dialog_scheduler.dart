@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
-import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/open_scheduling_confirmation.dart';
 
 class AlertDialogScheduler extends StatelessWidget {
   final DateTime selectedDate;
@@ -24,6 +25,12 @@ class AlertDialogScheduler extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
+        backgroundColor: const MaterialStatePropertyAll(
+          ColorsPallete.primaryGreen,
+        ),
+        shape: MaterialStatePropertyAll(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
         fixedSize: MaterialStateProperty.all<Size>(
           const Size(400.0, 40.0),
         ),
@@ -31,89 +38,18 @@ class AlertDialogScheduler extends StatelessWidget {
             MaterialStateProperty.all<TextStyle>(const TextStyle(fontSize: 18)),
       ),
       onPressed: () {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              scrollable: true,
-              title: const Text('Agende um horário'),
-              content: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    TextField(
-                      autofocus: true,
-                      controller: titleController,
-                      decoration: const InputDecoration(
-                        labelText: 'Titulo',
-                      ),
-                    ),
-                    DropdownSelectHourRange(selectedDate: selectedDate),
-                    const SizedBox(height: 18),
-                    TextField(
-                      controller: descriptionController,
-                      maxLines: 3,
-                      decoration: InputDecoration(
-                        floatingLabelAlignment: FloatingLabelAlignment.start,
-                        hintText: 'Integrantes, assuntos, etc.',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        filled: true,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              actions: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Text(
-                          'Cancelar',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.01),
-                    ElevatedButton(
-                      onPressed: () {
-                        addEvent(
-                          Event(
-                            title: titleController.text,
-                            description: descriptionController.text,
-                            date: selectedDate,
-                            formatedDate: formatDate(selectedDate),
-                            start: getStartRange(start ??
-                                "6:30"), // Define getStartRange function
-                            end: getEndRange(
-                                end ?? "7:00"), // Define getEndRange function
-                          ),
-                        );
-                        Navigator.of(context).pop();
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Text(
-                          'Agendar',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ], // Remove the semicolon here
-            );
-          },
+        openSchedulingConfirmation(
+          context,
+          addEvent: addEvent,
+          descriptionController: descriptionController,
+          titleController: titleController,
+          selectedDate: selectedDate,
         );
       },
-      child: Text('Agendar para ${formatDate(selectedDate)}'),
+      child: Text(
+        'Agendar para ${formatDate(selectedDate)}',
+        style: const TextStyle(color: ColorsPallete.white),
+      ),
     );
   }
 }

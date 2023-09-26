@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
 
@@ -14,7 +15,7 @@ class Scheduler extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: ColorsPallete.primaryGreen,
         title: Row(
           children: [
             const Icon(
@@ -34,8 +35,8 @@ class Scheduler extends StatelessWidget {
                 onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color.fromARGB(64, 231, 231, 231), // Background color
-                  ),
+                      ColorsPallete.white // Background color
+                      ),
                   side: MaterialStateProperty.all<BorderSide>(
                     const BorderSide(
                       color: Colors.black, // Border color
@@ -51,7 +52,7 @@ class Scheduler extends StatelessWidget {
                 child: const Text(
                   'Hoje',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: ColorsPallete.black,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

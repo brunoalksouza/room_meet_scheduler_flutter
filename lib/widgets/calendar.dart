@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/alert_dialog_scheduler.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class Calendar extends StatefulWidget {
-  const Calendar({
-    Key? key,
-  }) : super(key: key);
+  const Calendar({Key? key}) : super(key: key);
 
   @override
   _CalendarState createState() => _CalendarState();
@@ -221,7 +220,7 @@ class _CalendarState extends State<Calendar> {
                     titleCentered: true,
                     formatButtonVisible: false,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 240, 240, 240),
+                      color: ColorsPallete.primaryGreen,
                     ),
                   ),
                   onDaySelected: (selectedDay, focusedDay) {
