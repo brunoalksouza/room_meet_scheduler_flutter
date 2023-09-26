@@ -15,11 +15,13 @@ class _EventsListState extends State<EventsList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.628,
+      height: MediaQuery.of(context).size.height * 0.65,
       width: double.maxFinite,
       child: ListView(
         shrinkWrap: true,
-        children: [for (Event event in widget.events) EventItem(event: event)],
+        children: [
+          for (Event event in widget.events) EventItem(event: event),
+        ],
       ),
     );
   }

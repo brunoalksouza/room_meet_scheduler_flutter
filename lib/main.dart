@@ -24,7 +24,9 @@ class MainApp extends StatelessWidget {
       title: 'Meet Scheduler',
       theme: ThemeData(
         dialogTheme: DialogTheme(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
       ),
       home: const Scheduler(),

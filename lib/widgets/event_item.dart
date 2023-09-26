@@ -30,12 +30,17 @@ class _EventItemState extends State<EventItem> {
                 style:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 7),
               Text(
-                "${widget.event.formatedDate}\n${widget.event.description}",
+                widget.event.formatedDate,
                 style: const TextStyle(
                   fontSize: 14,
                 ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                widget.event.description,
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
               ),
             ],
           ),

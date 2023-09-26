@@ -127,8 +127,10 @@ class _CalendarState extends State<Calendar> {
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width * 0.015,
+                    bottom: MediaQuery.of(context).size.width * 0.015,
+                  ),
                   child: const Text(
                     'Agendamentos',
                     style: TextStyle(
@@ -168,8 +170,8 @@ class _CalendarState extends State<Calendar> {
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: TableCalendar(
-                    rowHeight: MediaQuery.of(context).size.height * 0.10,
-                    daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
+                    rowHeight: MediaQuery.of(context).size.height * 0.11,
+                    daysOfWeekHeight: MediaQuery.of(context).size.height * 0.09,
                     calendarStyle: const CalendarStyle(
                       defaultTextStyle: TextStyle(fontSize: 22),
                       weekendTextStyle:

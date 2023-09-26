@@ -17,7 +17,7 @@ class ColorsPallete {
   static const Color secondaryGreen = Color(0xff90A791);
   static const Color borderGreen = Color(0xff09926C);
   static const Color darkerGreen = Color(0xff032B22);
-  static const Color blackPurple = Color.fromARGB(0, 62, 6, 100);
+  static const Color blackPurple = Color.fromARGB(255, 62, 6, 100);
   static Color primaryBlue = Colors.blue.withOpacity(0.4);
   static const Color primaryYellow = Color(0xffDBD427);
   static const Color secondaryYellow = Color(0xffFFFDCC);

@@ -34,8 +34,9 @@ class AlertDialogScheduler extends StatelessWidget {
         fixedSize: MaterialStateProperty.all<Size>(
           const Size(400.0, 40.0),
         ),
-        textStyle:
-            MaterialStateProperty.all<TextStyle>(const TextStyle(fontSize: 18)),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(fontSize: 18),
+        ),
       ),
       onPressed: () {
         openSchedulingConfirmation(
