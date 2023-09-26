@@ -1,88 +1,55 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
-import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
+import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/open_scheduling_confirmation.dart';
 
 class AlertDialogScheduler extends StatelessWidget {
   final DateTime selectedDate;
   final List<Event> events;
+  final void Function(Event) addEvent;
 
   AlertDialogScheduler({
-    super.key,
+    Key? key, // Use Key? key instead of super.key
     required this.selectedDate,
     required this.events,
+    required this.addEvent,
   });
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-  String formatDate(DateTime selectedDate) {
-    return DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(selectedDate);
-  }
-
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: const MaterialStatePropertyAll(
+          ColorsPallete.primaryGreen,
+        ),
+        shape: MaterialStatePropertyAll(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        fixedSize: MaterialStateProperty.all<Size>(
+          const Size(400.0, 40.0),
+        ),
+        textStyle:
+            MaterialStateProperty.all<TextStyle>(const TextStyle(fontSize: 18)),
+      ),
       onPressed: () {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              scrollable: true,
-              title: const Text('Agende um horário'),
-              content: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    TextField(
-                      autofocus: true,
-                      controller: titleController,
-                      decoration: const InputDecoration(
-                        labelText: 'Titulo',
-                      ),
-                    ),
-                    DropdownSelectHourRange(selectedDate: selectedDate),
-                    const SizedBox(height: 18),
-                    TextField(
-                      controller: descriptionController,
-                      maxLines: 3,
-                      decoration: InputDecoration(
-                        floatingLabelAlignment: FloatingLabelAlignment.start,
-                        hintText: 'Descrição',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        filled: true,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              actions: [
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      events.addAll({
-                        Event(
-                          title: titleController.text,
-                          description: descriptionController.text,
-                          date: selectedDate,
-                          formatedDate: formatDate(selectedDate),
-                          start: getStartRange(start!),
-                          end: getEndRange(end!),
-                        ),
-                      });
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Submit'),
-                  ),
-                )
-              ],
-            );
-          },
+        openSchedulingConfirmation(
+          context,
+          addEvent: addEvent,
+          descriptionController: descriptionController,
+          titleController: titleController,
+          selectedDate: selectedDate,
         );
       },
-      child: const Icon(Icons.add),
+      child: Text(
+        'Agendar para ${formatDate(selectedDate)}',
+        style: const TextStyle(color: ColorsPallete.white),
+      ),
     );
   }
 }

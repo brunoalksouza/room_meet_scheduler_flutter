@@ -1,5 +1,6 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
 
 class Scheduler extends StatelessWidget {
@@ -9,23 +10,19 @@ class Scheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String selectedDate =
-        DateFormat("EEEE, d 'de' MMMM", 'pt_BR').format(DateTime.now());
+    String selectedDate = formatDate(DateTime.now());
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        elevation: 0,
+        backgroundColor: ColorsPallete.primaryGreen,
         title: Row(
           children: [
-            const Icon(
-              Icons.calendar_month,
-              color: Colors.black,
-            ),
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.only(right: 20),
               child: Text(
                 'Planejador de reuniões',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: ColorsPallete.primaryWhite),
               ),
             ),
             Tooltip(
@@ -34,11 +31,11 @@ class Scheduler extends StatelessWidget {
                 onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color.fromARGB(64, 231, 231, 231), // Background color
-                  ),
+                      ColorsPallete.white // Background color
+                      ),
                   side: MaterialStateProperty.all<BorderSide>(
                     const BorderSide(
-                      color: Colors.black, // Border color
+                      color: ColorsPallete.primaryWhite, // Border color
                       width: 1.0, // Border width
                     ),
                   ),
@@ -49,13 +46,18 @@ class Scheduler extends StatelessWidget {
                   splashFactory: NoSplash.splashFactory, // Remove splash effect
                 ),
                 child: const Text(
-                  'test',
+                  'Hoje',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: ColorsPallete.black,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ),
+            ),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+            const Text(
+              'Sala X',
+              style: TextStyle(color: ColorsPallete.white),
             ),
           ],
         ),
@@ -63,7 +65,7 @@ class Scheduler extends StatelessWidget {
           builder: (context) => IconButton(
             icon: const Icon(
               Icons.menu,
-              color: Colors.black,
+              color: ColorsPallete.primaryWhite,
             ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
@@ -72,6 +74,7 @@ class Scheduler extends StatelessWidget {
         ),
       ),
       body: const Calendar(),
+      backgroundColor: const Color.fromARGB(255, 40, 2, 87),
     );
   }
 }
