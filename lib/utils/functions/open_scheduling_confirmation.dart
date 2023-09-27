@@ -26,6 +26,7 @@ void openSchedulingConfirmation(
                 controller: titleController,
                 cursorColor: ColorsPallete.darkerGrey,
                 decoration: const InputDecoration(
+                  labelStyle: TextStyle(color: ColorsPallete.blackPurple),
                   labelText: 'Titulo',
                   focusedBorder: UnderlineInputBorder(),
                 ),
@@ -35,7 +36,15 @@ void openSchedulingConfirmation(
               TextField(
                 controller: descriptionController,
                 maxLines: 3,
+                cursorColor: ColorsPallete.darkerGrey,
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: const BorderSide(
+                      color: ColorsPallete.darkerGrey,
+                      width: 2.0,
+                    ),
+                  ),
                   floatingLabelAlignment: FloatingLabelAlignment.start,
                   hintText: 'Integrantes, assuntos, etc.',
                   border: OutlineInputBorder(
@@ -57,7 +66,7 @@ void openSchedulingConfirmation(
                       ColorsPallete.primaryRed),
                 ),
                 child: const Padding(
-                  padding: EdgeInsets.all(5.0),
+                  padding: EdgeInsets.all(7.0),
                   child: Text(
                     'Cancelar',
                     style: TextStyle(fontSize: 18),
@@ -91,7 +100,7 @@ void openSchedulingConfirmation(
                   Navigator.of(context).pop();
                 },
                 child: const Padding(
-                  padding: EdgeInsets.all(5.0),
+                  padding: EdgeInsets.all(7.0),
                   child: Text(
                     'Agendar',
                     style: TextStyle(fontSize: 18),

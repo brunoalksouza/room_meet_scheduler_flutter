@@ -3,6 +3,7 @@ import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/alert_dialog_scheduler.dart';
+import 'package:room_meet_scheduler_flutter/widgets/events_list.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -126,7 +127,10 @@ class _CalendarState extends State<Calendar> {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width * 0.015,
+                    bottom: MediaQuery.of(context).size.width * 0.015,
+                  ),
                   child: const Text(
                     'Agendamentos',
                     style: TextStyle(
@@ -135,35 +139,7 @@ class _CalendarState extends State<Calendar> {
                         color: ColorsPallete.primaryWhite),
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(18),
-                      ),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: ListView.builder(
-                      itemCount: events.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          onLongPress: () {
-                            setState(() {
-                              events.removeAt(index);
-                            });
-                          },
-                          tileColor: ColorsPallete.white,
-                          title: Text(events[index].title),
-                          subtitle: Text(
-                            '${formatDate(events[index].date)} ${events[index].start} - ${events[index].end}\n${events[index].description}',
-                          ),
-                          minVerticalPadding: 8,
-                        );
-                      },
-                    ),
-                  ),
-                ),
+                EventsList(events: events),
                 const SizedBox(
                   height: 20,
                 ),
@@ -194,8 +170,8 @@ class _CalendarState extends State<Calendar> {
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: TableCalendar(
-                    rowHeight: MediaQuery.of(context).size.height * 0.10,
-                    daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
+                    rowHeight: MediaQuery.of(context).size.height * 0.11,
+                    daysOfWeekHeight: MediaQuery.of(context).size.height * 0.09,
                     calendarStyle: const CalendarStyle(
                       defaultTextStyle: TextStyle(fontSize: 22),
                       weekendTextStyle:
