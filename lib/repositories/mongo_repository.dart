@@ -23,7 +23,7 @@ class MongoRepository {
     try {
       _db = await CoreStore.database.getConnection();
 
-      final collection = _db!.collection("room_scheduler_prod");
+      final collection = _db!.collection("Events");
 
       final updateResult = await collection.insert(
         {

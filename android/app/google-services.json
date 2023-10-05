@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "874856130236",
+    "project_id": "room-meet-scheduler",
+    "storage_bucket": "room-meet-scheduler.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874856130236:android:653338dfb79a3c25ab12b9",
+        "android_client_info": {
+          "package_name": "com.example.room_meet_scheduler_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH8E1ALgSW0dcPcxMulSMHoNmUKBCVgZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

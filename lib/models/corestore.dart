@@ -7,11 +7,8 @@ class CoreStore {
 
   static MongoDatabase database = MongoDatabase(
     uriString:
-        "${config.dbHost}://${config.dbUser}:${config.dbPassword}@cluster0.5vwuiip.mongodb.net/${config.dbName}",
+        "mongodb+srv://flutter:flutter_admin@fluttercluster.a8jm0fw.mongodb.net/room_meet_scheduller",
   );
 
   static MongoService mongoService = MongoService();
-
-  static String name = "";
-  static String age = "";
 }

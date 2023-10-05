@@ -4,6 +4,8 @@ import 'package:room_meet_scheduler_flutter/interfaces/mongo_database_interface.
 class MongoDatabase implements Database<Db> {
   final String uriString;
 
+  Db? con;
+
   Db? connection;
 
   bool _connected = false;
@@ -23,6 +25,7 @@ class MongoDatabase implements Database<Db> {
       _connected = true;
       time = DateTime.now().add(const Duration(minutes: 5));
     } catch (error) {
+      print(error);
       _connected = false;
     }
   }
