@@ -7,7 +7,7 @@ import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
-Future <void> openSchedulingConfirmation(
+Future<void> openSchedulingConfirmation(
   BuildContext context, {
   required TextEditingController titleController,
   required TextEditingController descriptionController,
@@ -29,7 +29,7 @@ Future <void> openSchedulingConfirmation(
                 controller: titleController,
                 cursorColor: ColorsPallete.darkerGrey,
                 decoration: const InputDecoration(
-                  labelStyle: TextStyle(color: ColorsPallete.blackPurple),
+                  labelStyle: TextStyle(color: ColorsPallete.black),
                   labelText: 'Titulo',
                   focusedBorder: UnderlineInputBorder(),
                 ),
