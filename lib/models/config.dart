@@ -1,6 +1,8 @@
 const url = 'http://192.168.2.64:3001';
 const registration = '$url/registration';
 
+const login = '$url/login';
+
 //nao usado AINDAQ
 class Config {
   late String _dbUser;

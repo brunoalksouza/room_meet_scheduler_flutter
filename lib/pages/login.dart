@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/pages/register.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/login_user.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key, required token}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -103,7 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                     ), // Set the width here
                   ),
                   onPressed: () {
-                    // Handle login button press here
+                    loginUser(
+                        context, emailController, passwordController, context);
                   },
                   child: const Text('Login'),
                 ),

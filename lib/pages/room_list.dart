@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:room_meet_scheduler_flutter/pages/scheduler.dart';
 
-class RoomListWidget extends StatelessWidget {
-  const RoomListWidget({Key? key}) : super(key: key);
+class RoomListPage extends StatelessWidget {
+  const RoomListPage({required this.token, Key? key}) : super(key: key);
+  final token;
 
   @override
   Widget build(BuildContext context) {

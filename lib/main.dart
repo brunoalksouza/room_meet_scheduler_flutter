@@ -29,7 +29,9 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const LoginPage(),
+      home: const LoginPage(
+        token: null,
+      ),
     );
   }
 }

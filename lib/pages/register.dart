@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:room_meet_scheduler_flutter/models/config.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
-import 'package:http/http.dart' as http;
+import 'package:room_meet_scheduler_flutter/utils/functions/register_user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -17,10 +16,16 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isNotValidate = false;
+  late SharedPreferences prefs;
 
   @override
   void initState() {
     super.initState();
+    initSharedPreferences();
+  }
+
+  void initSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
   }
 
   @override
@@ -28,42 +33,6 @@ class _RegisterPageState extends State<RegisterPage> {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
-  }
-
-  void registerUser() async {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      var regBody = {
-        "email": emailController.text,
-        "password": passwordController.text
-      };
-
-      var response = await http.post(
-        Uri.parse(registration),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(regBody),
-      );
-
-      var jsonResponse = jsonDecode(response.body);
-
-      print(
-        jsonResponse['status'],
-      );
-
-      if (jsonResponse['status']) {
-        // ignore: use_build_context_synchronously
-        Navigator.pop(context);
-      } else {
-        print('erro');
-      }
-
-      setState(() {
-        isNotValidate = false;
-      });
-    } else {
-      setState(() {
-        isNotValidate = true;
-      });
-    }
   }
 
   @override
@@ -145,7 +114,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   onPressed: () {
-                    registerUser();
+                    setState(() {
+                      registerUser(context, emailController, passwordController,
+                          isNotValidate);
+                    });
                   },
                   child: const Text('Registrar'),
                 ),
