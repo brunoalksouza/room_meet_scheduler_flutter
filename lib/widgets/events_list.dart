@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/event_item.dart';
 
+// ignore: must_be_immutable
 class EventsList extends StatefulWidget {
   List<Event> events;
 
@@ -15,7 +16,7 @@ class _EventsListState extends State<EventsList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.65,
+      height: MediaQuery.of(context).size.height * 0.6,
       width: double.maxFinite,
       child: ListView(
         shrinkWrap: true,

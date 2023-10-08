@@ -1,17 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/models/corestore.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
-void openSchedulingConfirmation(
+Future<void> openSchedulingConfirmation(
   BuildContext context, {
   required TextEditingController titleController,
   required TextEditingController descriptionController,
   required DateTime selectedDate,
   required Function(Event) addEvent,
-}) {
-  showDialog(
+}) async {
+  await showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
@@ -26,7 +29,7 @@ void openSchedulingConfirmation(
                 controller: titleController,
                 cursorColor: ColorsPallete.darkerGrey,
                 decoration: const InputDecoration(
-                  labelStyle: TextStyle(color: ColorsPallete.blackPurple),
+                  labelStyle: TextStyle(color: ColorsPallete.black),
                   labelText: 'Titulo',
                   focusedBorder: UnderlineInputBorder(),
                 ),
@@ -84,19 +87,20 @@ void openSchedulingConfirmation(
                 ),
 
                 //#F44336
-                onPressed: () {
-                  addEvent(
-                    Event(
-                      title: titleController.text,
-                      description: descriptionController.text,
-                      date: selectedDate,
-                      formatedDate: formatDate(selectedDate),
-                      start: getStartRange(
-                          start ?? "6:30"), // Define getStartRange function
-                      end: getEndRange(
-                          end ?? "7:00"), // Define getEndRange function
-                    ),
+                onPressed: () async {
+                  Event event = Event(
+                    title: titleController.text,
+                    description: descriptionController.text,
+                    date: selectedDate,
+                    formatedDate: formatDate(selectedDate),
+                    start: getStartRange(
+                        start ?? "6:30"), // Define getStartRange function
+                    end: getEndRange(
+                        end ?? "7:00"), // Define getEndRange function
                   );
+
+                  await CoreStore.mongoService.addEvent(event);
+
                   Navigator.of(context).pop();
                 },
                 child: const Padding(

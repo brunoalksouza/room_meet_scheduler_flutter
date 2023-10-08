@@ -38,8 +38,8 @@ class AlertDialogScheduler extends StatelessWidget {
           const TextStyle(fontSize: 18),
         ),
       ),
-      onPressed: () {
-        openSchedulingConfirmation(
+      onPressed: () async {
+        await openSchedulingConfirmation(
           context,
           addEvent: addEvent,
           descriptionController: descriptionController,

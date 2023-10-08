@@ -3,10 +3,11 @@ import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/calendar.dart';
 
+// ignore: must_be_immutable
 class Scheduler extends StatelessWidget {
-  const Scheduler({
-    Key? key,
-  }) : super(key: key);
+  Scheduler({Key? key, required this.titleRoom}) : super(key: key);
+
+  String titleRoom;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +56,9 @@ class Scheduler extends StatelessWidget {
               ),
             ),
             SizedBox(width: MediaQuery.of(context).size.width * 0.01),
-            const Text(
-              'Sala X',
-              style: TextStyle(color: ColorsPallete.white),
+            Text(
+              titleRoom,
+              style: const TextStyle(color: ColorsPallete.white),
             ),
           ],
         ),
@@ -73,7 +74,7 @@ class Scheduler extends StatelessWidget {
           ),
         ),
       ),
-      body: const Calendar(),
+      body: Calendar(),
       backgroundColor: const Color.fromARGB(255, 40, 2, 87),
     );
   }
