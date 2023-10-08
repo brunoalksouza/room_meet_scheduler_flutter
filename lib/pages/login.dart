@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/pages/register.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginWidgetState createState() => _LoginWidgetState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _LoginPageState extends State<LoginPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -20,8 +21,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -34,7 +35,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: Container(
             alignment: Alignment.center,
             width: MediaQuery.of(context).size.width * 0.4,
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: MediaQuery.of(context).size.height * 0.7,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -68,7 +69,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: TextFormField(
-                    controller: _usernameController,
+                    controller: emailController,
                     autofocus: true,
                     decoration: InputDecoration(
                       labelText: 'Username',
@@ -83,7 +84,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: TextFormField(
-                    controller: _passwordController,
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -105,6 +106,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                     // Handle login button press here
                   },
                   child: const Text('Login'),
+                ),
+                const SizedBox(height: 16),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterPage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Fazer cadastro'),
                 ),
               ],
             ),

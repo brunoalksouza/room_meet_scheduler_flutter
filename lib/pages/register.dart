@@ -1,17 +1,22 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/models/config.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
+import 'package:http/http.dart' as http;
 
-class CadastroWidget extends StatefulWidget {
-  const CadastroWidget({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  _CadastroWidgetState createState() => _CadastroWidgetState();
+  // ignore: library_private_types_in_public_api
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _CadastroWidgetState extends State<CadastroWidget> {
+class _RegisterPageState extends State<RegisterPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool isNotValidate = false;
 
   @override
   void initState() {
@@ -20,9 +25,45 @@ class _CadastroWidgetState extends State<CadastroWidget> {
 
   @override
   void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
+  }
+
+  void registerUser() async {
+    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+      var regBody = {
+        "email": emailController.text,
+        "password": passwordController.text
+      };
+
+      var response = await http.post(
+        Uri.parse(registration),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(regBody),
+      );
+
+      var jsonResponse = jsonDecode(response.body);
+
+      print(
+        jsonResponse['status'],
+      );
+
+      if (jsonResponse['status']) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context);
+      } else {
+        print('erro');
+      }
+
+      setState(() {
+        isNotValidate = false;
+      });
+    } else {
+      setState(() {
+        isNotValidate = true;
+      });
+    }
   }
 
   @override
@@ -34,7 +75,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
           child: Container(
             alignment: Alignment.center,
             width: MediaQuery.of(context).size.width * 0.4,
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: MediaQuery.of(context).size.height * 0.7,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -59,7 +100,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Faça Cadastro para agendar uma reunião',
+                      'Faça login para agendar uma reunião',
                       style: TextStyle(fontSize: 16),
                     ),
                   ],
@@ -68,9 +109,10 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: TextFormField(
-                    controller: _usernameController,
+                    controller: emailController,
                     autofocus: true,
                     decoration: InputDecoration(
+                      errorText: isNotValidate ? 'Campo obrigatório' : null,
                       labelText: 'Username',
                       prefixIcon: const Icon(Icons.person_rounded),
                       border: OutlineInputBorder(
@@ -83,9 +125,10 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: TextFormField(
-                    controller: _passwordController,
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
+                      errorText: isNotValidate ? 'Campo obrigatório' : null,
                       labelText: 'Password',
                       prefixIcon: const Icon(Icons.lock_rounded),
                       border: OutlineInputBorder(
@@ -99,12 +142,19 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(
                       Size(MediaQuery.of(context).size.width * 0.3, 50),
-                    ), // Set the width here
+                    ),
                   ),
                   onPressed: () {
-                    // Handle Cadastro button press here
+                    registerUser();
                   },
-                  child: const Text('Cadastro'),
+                  child: const Text('Registrar'),
+                ),
+                const SizedBox(height: 16),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Fazer login'),
                 ),
               ],
             ),

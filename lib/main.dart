@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:room_meet_scheduler_flutter/pages/login.dart';
-import 'package:room_meet_scheduler_flutter/pages/room_list.dart';
-import 'package:room_meet_scheduler_flutter/pages/scheduler.dart';
 
 Future<void> main() async {
   runApp(const MainApp());
@@ -31,7 +29,7 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const RoomListWidget(),
+      home: const LoginPage(),
     );
   }
 }

@@ -1,3 +1,7 @@
+const url = 'http://192.168.2.64:3001';
+const registration = '$url/registration';
+
+//nao usado AINDAQ
 class Config {
   late String _dbUser;
   late String _dbPassword;

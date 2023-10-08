@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/event_item.dart';
 
+// ignore: must_be_immutable
 class EventsList extends StatefulWidget {
   List<Event> events;
 
