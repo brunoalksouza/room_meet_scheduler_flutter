@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:http/http.dart' as http;
 
 class EventItem extends StatefulWidget {
   final Event event;

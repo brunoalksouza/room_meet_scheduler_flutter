@@ -1,24 +1,8 @@
-const url = 'http://192.168.2.64:3001';
+const url = 'http://10.11.20.225:3001';
 const registration = '$url/registration';
 
 const login = '$url/login';
 
-//nao usado AINDAQ
-class Config {
-  late String _dbUser;
-  late String _dbPassword;
-  late String _dbHost;
-  late String _dbName;
+const addevent = '$url/addevent';
 
-  Config() {
-    _dbUser = const String.fromEnvironment('DB_USER');
-    _dbPassword = const String.fromEnvironment('DB_PASSWORD');
-    _dbHost = const String.fromEnvironment('DB_HOST');
-    _dbName = const String.fromEnvironment('DB_NAME');
-  }
-
-  String get dbUser => _dbUser;
-  String get dbPassword => _dbPassword;
-  String get dbHost => _dbHost;
-  String get dbName => _dbName;
-}
+const getevent = '$url/getevent';
