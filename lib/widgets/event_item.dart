@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
-import 'package:http/http.dart' as http;
 
 class EventItem extends StatefulWidget {
   final Event event;
@@ -31,9 +30,9 @@ class _EventItemState extends State<EventItem> {
                 style:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              Text(
-                widget.event.formatedDate,
-                style: const TextStyle(
+              const Text(
+                'widget.event.formatedDate,',
+                style: TextStyle(
                   fontSize: 14,
                 ),
               ),

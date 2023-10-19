@@ -29,13 +29,19 @@ class AlertDialogScheduler extends StatelessWidget {
           ColorsPallete.primaryGreen,
         ),
         shape: MaterialStatePropertyAll(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
         fixedSize: MaterialStateProperty.all<Size>(
           const Size(400.0, 40.0),
         ),
         textStyle: MaterialStateProperty.all<TextStyle>(
           const TextStyle(fontSize: 18),
+        ),
+        alignment: Alignment.center,
+        minimumSize: MaterialStateProperty.all<Size>(
+          const Size(400.0, 70.0),
         ),
       ),
       onPressed: () async {
@@ -47,9 +53,14 @@ class AlertDialogScheduler extends StatelessWidget {
           selectedDate: selectedDate,
         );
       },
-      child: Text(
-        'Agendar para ${formatDate(selectedDate)}',
-        style: const TextStyle(color: ColorsPallete.white),
+      child: Center(
+        child: Text(
+          'Agendar para ${formatDate(selectedDate)}',
+          style: const TextStyle(
+            color: ColorsPallete.white,
+            fontSize: 22,
+          ),
+        ),
       ),
     );
   }

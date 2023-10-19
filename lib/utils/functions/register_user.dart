@@ -1,37 +1,30 @@
 import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:room_meet_scheduler_flutter/models/config.dart';
 
 void registerUser(BuildContext context, emailController, passwordController,
     isNotValidate) async {
   if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-    var regBody = {
-      "email": emailController.text,
-      "password": passwordController.text
-    };
-
-    var response = await http.post(
-      Uri.parse(registration),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(regBody),
+    var headers = {'Content-Type': 'application/json'};
+    var data = json.encode(
+        {"email": emailController.text, "password": passwordController.text});
+    var dio = Dio();
+    var response = await dio.request(
+      registration,
+      options: Options(
+        method: 'POST',
+        headers: headers,
+      ),
+      data: data,
     );
 
-    var jsonResponse = jsonDecode(response.body);
-
-    print(
-      jsonResponse['status'],
-    );
-
-    if (jsonResponse['status']) {
+    if (response.statusCode == 200) {
+      print(json.encode(response.data));
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } else {
-      print('erro');
+      print(response.statusMessage);
     }
-    isNotValidate = false;
-  } else {
-    isNotValidate = true;
   }
 }

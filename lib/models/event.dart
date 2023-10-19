@@ -3,7 +3,6 @@ class Event {
   final String title;
   final String description;
   final DateTime date;
-  final String formatedDate;
   final String start;
   final String end;
 
@@ -11,7 +10,6 @@ class Event {
     required this.title,
     required this.description,
     required this.date,
-    required this.formatedDate,
     required this.start,
     required this.end,
   });
@@ -20,7 +18,6 @@ class Event {
       'title': title,
       'description': description,
       'date': date.toIso8601String(),
-      'formatedDate': formatedDate,
       'start': start,
       'end': end,
     };

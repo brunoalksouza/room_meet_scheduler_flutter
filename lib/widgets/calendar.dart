@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
-import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
 import 'package:room_meet_scheduler_flutter/widgets/alert_dialog_scheduler.dart';
 import 'package:room_meet_scheduler_flutter/widgets/events_list.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -27,91 +26,6 @@ class _CalendarState extends State<Calendar> {
         title: "title",
         description: "description",
         date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
-        start: "07:00",
-        end: "8:00"),
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        formatedDate: formatDate(DateTime.now()),
         start: "07:00",
         end: "8:00"),
   ];
@@ -176,7 +90,7 @@ class _CalendarState extends State<Calendar> {
                     child: TableCalendar(
                       rowHeight: MediaQuery.of(context).size.height * 0.11,
                       daysOfWeekHeight:
-                          MediaQuery.of(context).size.height * 0.09,
+                          MediaQuery.of(context).size.height * 0.10,
                       calendarStyle: const CalendarStyle(
                         defaultTextStyle: TextStyle(fontSize: 22),
                         weekendTextStyle:

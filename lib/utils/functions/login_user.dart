@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/config.dart';
+import 'package:room_meet_scheduler_flutter/pages/room_list.dart';
 
 void loginUser(BuildContext context, TextEditingController emailController,
     TextEditingController passwordController, prefs) async {
@@ -20,6 +21,17 @@ void loginUser(BuildContext context, TextEditingController emailController,
 
     if (response.statusCode == 200) {
       print(json.encode(response.data));
+
+      var myToken = jsonEncode('token');
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => RoomListPage(
+            token: myToken,
+          ),
+        ),
+      );
     } else {
       print(response.statusMessage);
     }
