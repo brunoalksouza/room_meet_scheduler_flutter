@@ -7,6 +7,7 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required token}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 

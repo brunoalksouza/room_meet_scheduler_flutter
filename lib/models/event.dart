@@ -13,6 +13,17 @@ class Event {
     required this.start,
     required this.end,
   });
+
+  factory Event.fromMap(Map<String, dynamic> source) {
+    return Event(
+      title: source["title"],
+      description: source["description"],
+      date: DateTime.parse(source["date"]),
+      start: source["start"],
+      end: source["end"],
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'title': title,

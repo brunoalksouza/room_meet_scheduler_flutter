@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/add_event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
 Future<void> openSchedulingConfirmation(
@@ -10,7 +10,6 @@ Future<void> openSchedulingConfirmation(
   required TextEditingController titleController,
   required TextEditingController descriptionController,
   required DateTime selectedDate,
-  required Function(Event) addEvent,
 }) async {
   await showDialog(
     context: context,
@@ -84,7 +83,14 @@ Future<void> openSchedulingConfirmation(
                       ColorsPallete.primaryGreen),
                 ),
                 onPressed: () async {
-                  
+                  await addEvent(
+                    context,
+                    titleController.text,
+                    descriptionController.text,
+                    selectedDate,
+                  );
+                  titleController.clear();
+                  descriptionController.clear();
                   Navigator.of(context).pop();
                 },
                 child: const Padding(

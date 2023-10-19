@@ -4,6 +4,7 @@ import 'package:room_meet_scheduler_flutter/pages/scheduler.dart';
 
 class RoomListPage extends StatelessWidget {
   const RoomListPage({required this.token, Key? key}) : super(key: key);
+  // ignore: prefer_typing_uninitialized_variables
   final token;
 
   @override

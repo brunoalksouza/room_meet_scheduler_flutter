@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
+import 'package:room_meet_scheduler_flutter/utils/functions/get_events.dart';
 import 'package:room_meet_scheduler_flutter/widgets/alert_dialog_scheduler.dart';
 import 'package:room_meet_scheduler_flutter/widgets/events_list.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -8,7 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 // ignore: must_be_immutable
 class Calendar extends StatefulWidget {
-  Calendar({Key? key}) : super(key: key);
+  const Calendar({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -21,14 +22,7 @@ class _CalendarState extends State<Calendar> {
 
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
-  List<Event> events = [
-    Event(
-        title: "title",
-        description: "description",
-        date: DateTime.now(),
-        start: "07:00",
-        end: "8:00"),
-  ];
+  List<Event> events = [];
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +58,7 @@ class _CalendarState extends State<Calendar> {
                   AlertDialogScheduler(
                     selectedDate: selectedDate,
                     events: events,
-                    addEvent: addEvent,
+                    setEvents: setEvents,
                   ),
                 ],
               ),
@@ -135,18 +129,24 @@ class _CalendarState extends State<Calendar> {
                           color: ColorsPallete.primaryGreen,
                         ),
                       ),
-                      onDaySelected: (selectedDay, focusedDay) {
-                        setState(
-                          () {
-                            if (selectedDay.weekday != DateTime.saturday &&
-                                selectedDay.weekday != DateTime.sunday &&
-                                selectedDay.isAfter(
-                                  todayDate.subtract(const Duration(days: 1)),
-                                )) {
-                              selectedDate = selectedDay;
-                            }
-                          },
-                        );
+                      onDaySelected: (selectedDay, focusedDay) async {
+                        if (selectedDay.weekday != DateTime.saturday &&
+                            selectedDay.weekday != DateTime.sunday &&
+                            selectedDay.isAfter(
+                              todayDate.subtract(const Duration(days: 1)),
+                            )) {
+                          setState(() {
+                            selectedDate = selectedDay;
+                          });
+
+                          List<Event> eventsList = await getEvents(
+                            selectedDate.toString().split(" ").first,
+                          );
+
+                          setState(() {
+                            events = eventsList;
+                          });
+                        }
                       },
                       daysOfWeekStyle: const DaysOfWeekStyle(
                         decoration: BoxDecoration(
@@ -176,9 +176,9 @@ class _CalendarState extends State<Calendar> {
     );
   }
 
-  void addEvent(Event event) {
+  void setEvents(List<Event> newEvents) {
     setState(() {
-      events.add(event);
+      events = newEvents;
     });
   }
 }

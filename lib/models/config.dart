@@ -5,4 +5,4 @@ const login = '$url/login';
 
 const addevent = '$url/addevent';
 
-const getevent = '$url/getevent';
+const getevents = '$url/getevents';

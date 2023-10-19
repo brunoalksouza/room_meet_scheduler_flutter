@@ -74,7 +74,7 @@ class Scheduler extends StatelessWidget {
           ),
         ),
       ),
-      body: Calendar(),
+      body: const Calendar(),
       backgroundColor: const Color.fromARGB(255, 40, 2, 87),
     );
   }

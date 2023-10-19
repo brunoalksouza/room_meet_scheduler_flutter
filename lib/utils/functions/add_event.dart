@@ -4,16 +4,27 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/config.dart';
+import 'package:room_meet_scheduler_flutter/models/corestore.dart';
 
-void registerUser(BuildContext context, emailController, passwordController,
-    isNotValidate) async {
-  if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-    var headers = {'Content-Type': 'application/json'};
-    var data = json.encode(
-        {"email": emailController.text, "password": passwordController.text});
+Future<void> addEvent(
+  BuildContext context,
+  String title,
+  String description,
+  DateTime date,
+) async {
+  var headers = {'Content-Type': 'application/json'};
+  var data = json.encode({
+    "title": title,
+    "description": description,
+    "date": date.toString().split(" ").first,
+    "start": CoreStore.start,
+    "end": CoreStore.end
+  });
+
+  try {
     var dio = Dio();
     var response = await dio.request(
-      registration,
+      addevent,
       options: Options(
         method: 'POST',
         headers: headers,
@@ -23,10 +34,10 @@ void registerUser(BuildContext context, emailController, passwordController,
 
     if (response.statusCode == 200) {
       print(json.encode(response.data));
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
     } else {
       print(response.statusMessage);
     }
+  } catch (e) {
+    print(e);
   }
 }

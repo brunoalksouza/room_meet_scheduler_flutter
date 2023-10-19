@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:room_meet_scheduler_flutter/models/corestore.dart';
 
 const List<String> hours = [
   '07:00',
@@ -33,6 +34,7 @@ const List<String> hours = [
 class DropdownSelectHourRange extends StatefulWidget {
   const DropdownSelectHourRange({Key? key, required this.selectedDate})
       : super(key: key);
+
   final DateTime selectedDate;
 
   @override
@@ -40,9 +42,6 @@ class DropdownSelectHourRange extends StatefulWidget {
   _DropdownSelectHourRangeState createState() =>
       _DropdownSelectHourRangeState();
 }
-
-String? start;
-String? end;
 
 class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
   List<String> endDropdownItems = hours;
@@ -57,7 +56,7 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
         ),
         DropdownButton(
           menuMaxHeight: 250,
-          value: start ?? hours.first,
+          value: CoreStore.start,
           items: hours.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
@@ -67,21 +66,23 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
           onChanged: ((value) {
             setState(
               () {
-                start = value.toString();
-                endDropdownItems =
-                    hours.where((hour) => hour.compareTo(start!) >= 1).toList();
-                getStartRange(start!);
+                CoreStore.start = value.toString();
+                CoreStore.start = value.toString();
+                endDropdownItems = hours
+                    .where((hour) => hour.compareTo(CoreStore.start) >= 1)
+                    .toList();
+                getStartRange(CoreStore.start);
               },
             );
-            if (!endDropdownItems.contains(end)) {
-              end = endDropdownItems.first;
+            if (!endDropdownItems.contains(CoreStore.end)) {
+              CoreStore.end = endDropdownItems.first;
             }
           }),
         ),
         const Text(' -  '),
         DropdownButton(
           menuMaxHeight: 250,
-          value: end ?? hours[1],
+          value: CoreStore.end,
           items: endDropdownItems.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
@@ -90,8 +91,8 @@ class _DropdownSelectHourRangeState extends State<DropdownSelectHourRange> {
           }).toList(),
           onChanged: ((value) {
             setState(() {
-              end = value.toString();
-              getEndRange(end!);
+              CoreStore.end = value.toString();
+              getEndRange(CoreStore.end);
             });
           }),
         ),
