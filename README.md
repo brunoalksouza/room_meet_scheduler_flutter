@@ -4,6 +4,8 @@
 This is a project that was developed using Dart and Flutter.
 <br>
 This project was developed because of a pain that I felt I could resolve internally within the company where I do an internship. 
+<br>
+<br>
 I developed this application together with a co-worker where you can log in, choose one of the meeting rooms available within the company and thus schedule a time to hold a meeting.
 <br>
 This solution brings more organization within the company and less confusion when organizing schedules (which was done by sticking paper on the door).
@@ -14,7 +16,7 @@ This project was created with a backend where all user information and created e
 ```
 https://github.com/brunoalksouza/backend_meet_scheduller_node.git
 ```
-<br>
+
 <br>
 Feel free to send questions, criticisms and suggestions, if you have any ideas to improve the code you are welcome!
 </p>
