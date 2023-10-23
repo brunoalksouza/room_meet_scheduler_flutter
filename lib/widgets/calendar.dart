@@ -17,12 +17,22 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  List<Event> events = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getEvents(selectedDate.toString().split(" ").first).then((eventsList) {
+      setState(() {
+        events = eventsList;
+      });
+    });
+  }
+
   DateTime todayDate = DateTime.now();
   DateTime selectedDate = DateTime.now();
 
   final CalendarFormat _calendarFormat = CalendarFormat.month;
-
-  List<Event> events = [];
 
   @override
   Widget build(BuildContext context) {

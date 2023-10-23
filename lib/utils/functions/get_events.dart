@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:room_meet_scheduler_flutter/models/config.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
 
 Future<List<Event>> getEvents(String date) async {
@@ -10,7 +11,7 @@ Future<List<Event>> getEvents(String date) async {
   var data = json.encode({"date": date});
   var dio = Dio();
   var response = await dio.post(
-    'http://localhost:3001/getevents',
+    getevents,
     options: Options(
       headers: headers,
     ),
