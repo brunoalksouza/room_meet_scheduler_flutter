@@ -32,7 +32,7 @@ class _EventItemState extends State<EventItem> {
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Text(
-                formatDate(widget.event.date),
+                "${formatDate(widget.event.date)} | ${widget.event.start} - ${widget.event.end}",
                 style: const TextStyle(
                   fontSize: 14,
                 ),
