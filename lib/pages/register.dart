@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/shared/utils/functions/register_user.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
-import 'package:room_meet_scheduler_flutter/utils/functions/register_user.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

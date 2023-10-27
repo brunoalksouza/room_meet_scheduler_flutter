@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/pages/register.dart';
+import 'package:room_meet_scheduler_flutter/shared/utils/functions/login_user.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
-import 'package:room_meet_scheduler_flutter/utils/functions/login_user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required token}) : super(key: key);

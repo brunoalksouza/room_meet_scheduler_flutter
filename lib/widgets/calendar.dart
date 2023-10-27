@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:room_meet_scheduler_flutter/shared/utils/functions/get_events.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
-import 'package:room_meet_scheduler_flutter/utils/functions/get_events.dart';
 import 'package:room_meet_scheduler_flutter/widgets/alert_dialog_scheduler.dart';
 import 'package:room_meet_scheduler_flutter/widgets/events_list.dart';
 import 'package:table_calendar/table_calendar.dart';

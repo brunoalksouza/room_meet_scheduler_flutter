@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:room_meet_scheduler_flutter/shared/utils/functions/add_event.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
-import 'package:room_meet_scheduler_flutter/utils/functions/add_event.dart';
 import 'package:room_meet_scheduler_flutter/widgets/dropdown_hour_range.dart';
 
 Future<void> openSchedulingConfirmation(

@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:room_meet_scheduler_flutter/models/corestore.dart';
 import 'package:room_meet_scheduler_flutter/models/event.dart';
+import 'package:room_meet_scheduler_flutter/shared/utils/functions/get_events.dart';
+import 'package:room_meet_scheduler_flutter/shared/utils/functions/open_scheduling_confirmation.dart';
 import 'package:room_meet_scheduler_flutter/utils/colors/app_colors.dart';
 import 'package:room_meet_scheduler_flutter/utils/functions/format_date.dart';
-import 'package:room_meet_scheduler_flutter/utils/functions/get_events.dart';
-import 'package:room_meet_scheduler_flutter/utils/functions/open_scheduling_confirmation.dart';
 
 class AlertDialogScheduler extends StatefulWidget {
   final DateTime selectedDate;
