@@ -69,3 +69,15 @@ And run:
 ```
 flutter run
 ```
+
+Login screen:
+![Screenshot_6](https://github.com/brunoalksouza/room_meet_scheduler_flutter/assets/80255960/8cf14522-1a05-41ee-91d9-3aff718b15c5)
+
+General screen with reserved meetings
+Each meeting is represented by a little ball:
+![Screenshot_8](https://github.com/brunoalksouza/room_meet_scheduler_flutter/assets/80255960/eeaa8a25-5a93-44a6-89b3-f97488a40a89)
+
+After clicking the button to schedule the day, you receive this modal to schedule the time and add more information about:
+![Screenshot_9](https://github.com/brunoalksouza/room_meet_scheduler_flutter/assets/80255960/d07b3ce9-4c2a-48e8-b307-081a47fa2155)
+
+
